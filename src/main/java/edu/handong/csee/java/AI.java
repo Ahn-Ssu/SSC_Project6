@@ -220,13 +220,12 @@ public class AI {
 		int x0Location = - 99 ;
 		int y0Location = - 99 ;
 		int value =0 ;
-		
+		int count =0 ;
 		System.out.println("--------- AI rsDetection--------");
 		// 우상 대각선 방향 검출 (특수식) 
 		for(int x =0,y=0 ; x<19 && y<19 ; ) {
 			int xt = x;
 			int yt = y;
-			
 			
 			while(xt>-1 && yt<19) {
 				//하얀 돌을 검출 했을때 
@@ -236,13 +235,16 @@ public class AI {
 					// 저장된 value가 0일때, 첫번째 발견임
 					
 					//y 좌표는 감소하기 때문에 최소 값을 가질때 상단은 알 필요가 없음 
-					if (y0Location == -99 && yt > 0 && value == 0) {
+					if (y0Location == -99 && yt > 0 && xt<18 && value == 0) {
 						y0Location = yt - 1;
-					}
-					// x좌표가 증가하기 때문에 최대값을 가질때의 우측은 기록 할 필요가 없음 
-					if( x0Location == -99 && xt<18 && value ==0) {
 						x0Location = xt + 1;
 					}
+					// x좌표가 증가하기 때문에 최대값을 가질때의 우측은 기록 할 필요가 없음 
+					if( x0Location == -99 && xt<18 &&  value ==0) {
+						
+					}
+					System.out.print("y : " + y0Location);
+					System.out.println(",  x : " + x0Location);
 					value++;
 					
 				}// 검사 끝
@@ -251,20 +253,25 @@ public class AI {
 					// 대신 해당 좌표가 0으로 (오브젝트가없는) 비어있어야 함
 				
 					if (fieldInfo[yt][xt] == Stone.NONE)
-						rsInfo[yt][xt] += value;
+						rsInfo[yt][xt] += count++;
 
 					// y 검출 값을 기억해놓은 위치에 배치
 					// 대신 해당 좌표가 0으로 (오브젝트가없는) 비어있어야 함
 					// 둘중에 하나라도 쓰레기 값을 가지면 필터링 
+					
+					System.out.print("y : " + y0Location);
+					System.out.println(",  x : " + x0Location);
+					
 					if (y0Location != -99 && x0Location != -99 )
 					if (fieldInfo[y0Location][x0Location] == Stone.NONE)
-						 rsInfo[y0Location][x0Location] += value;
+						 rsInfo[y0Location][x0Location] += count++;
 
 					// 하얀돌의 연속이 끝났음으로 인자 초기화
 					x0Location = -99;
 					y0Location = -99;
 					value = 0;
 				}
+				
 				xt --;
 				yt ++;
 		}
