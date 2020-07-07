@@ -12,8 +12,8 @@ public class Stone {
 	private int[] locationNRole;
 	
 	// 흑 -1 , 백 +1 , 없음 0, 중립 99;
-	public final static int WHITE = 1;
-	public final static int BLACK = -1;
+	public final static int WHITE = 11;
+	public final static int BLACK = 22;
 	public final static int NPC = 99;
 	public final static int NONE = 0;
 	

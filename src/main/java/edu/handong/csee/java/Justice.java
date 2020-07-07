@@ -14,6 +14,7 @@ public class Justice {
 	private static int upDownCount;
 	private static int leftRightCount;
 
+	private AI myAI = new AI();
 	
 	public Justice() {
 		count = 0;
@@ -56,7 +57,7 @@ public class Justice {
 		System.out.println("Activation :" + playInfo[activatedInfo[0]][activatedInfo[1]]);
 
 		checkPlayInfo();
-
+		myAI.setInfo(playInfo);
 //		if (count > 10)
 			checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
 	}
@@ -89,15 +90,17 @@ public class Justice {
 	}
 
 	public void checkPlayInfo() {
+		System.out.println("----------Play Infomation---------");
 		for (int i = 0; i < 19; i++) {
 			for (int j = 0; j < 19; j++) {
 				System.out.print(" ");
-				System.out.print(playInfo[i][j]);
+				System.out.print(String.format("%2d",playInfo[i][j]));
 			}
 			System.out.println(" ");
 		}
 	}
 
+	
 	private void upCheck(int x, int y, int role) throws Exception {
 		if(x == 0 )
 			return;

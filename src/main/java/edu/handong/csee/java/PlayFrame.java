@@ -17,7 +17,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 
 	private static PlayFrame instance;
 	
-	private static JFrame playFrame = new JFrame("Connect6 - 육목");
+	private static JFrame playFrame = new JFrame("Connect6 + AI");
 	private JButton startButton, soundOnOff, restartButton;
 	private JLabel boardLabel, nowTurnLabelBody, countDownLabelBody ,playTimeLabelBody  ;
 	private static JPanel panel;
@@ -33,7 +33,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	//인터페이스 구축 
 	public PlayFrame() {
 	
-		MusicPlayer.BGMPlay();
+//		MusicPlayer.BGMPlay();
 		
 		playFrame.getContentPane().setBackground(Color.WHITE);
 		playFrame.getContentPane().setLayout(null);
