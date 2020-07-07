@@ -21,7 +21,7 @@ public class MusicPlayer {
 	public static void  BGMPlay() {
         try {
         	if(PlayFrame.isSoundOn()) {
-        		BGMFile = new File("/Users/suhyun/git/SSC_Project5/Source/BGM.wav");
+        		BGMFile = new File("/Users/suhyun/git/SSC_Project6/Source/BGM.wav");
         		AudioInputStream stream = AudioSystem.getAudioInputStream(BGMFile);
                 BGMClip = AudioSystem.getClip();
                 BGMClip.open(stream);
@@ -38,7 +38,7 @@ public class MusicPlayer {
 	public static void  putSound() {
         try {
             if(PlayFrame.isSoundOn()) {
-            	effectFile = new File("/Users/suhyun/git/SSC_Project5/Source/puteffect.wav");
+            	effectFile = new File("/Users/suhyun/git/SSC_Project6/Source/puteffect.wav");
             	AudioInputStream stream = AudioSystem.getAudioInputStream(effectFile);
                 effectClip = AudioSystem.getClip();
                 effectClip.open(stream);

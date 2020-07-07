@@ -42,11 +42,11 @@ public class ClearPopup extends JComponent implements ActionListener {
 		JLabel catIcon = new JLabel(" ");
 		catIcon.setFont(new Font("DX\uACBD\uD544\uACE0\uB515B", catIcon.getFont().getStyle(), 14));
 		if(role==1) {
-			catIcon.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/whiteCatStone.png"));
+			catIcon.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/whiteCatStone.png"));
 			InfoMessageLabel = new JLabel("하양이 이겼어요!");
 		}
 		else if (role == -1) {
-			catIcon.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/blackCatStone.png"));
+			catIcon.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/blackCatStone.png"));
 			InfoMessageLabel = new JLabel("까망이 이겼어요!");
 		}
 		else if(role == 99) {

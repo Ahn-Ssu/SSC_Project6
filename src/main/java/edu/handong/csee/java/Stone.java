@@ -17,9 +17,9 @@ public class Stone {
 	public final static int NPC = 99;
 	public final static int NONE = 0;
 	
-	public static final ImageIcon BlackIcon = new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/blackCatStone.png");
-	public static final ImageIcon WhiteIcon = new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/WhiteCatStone.png");
-	public static final ImageIcon NPCIcon = new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/NPCCatStone - red.png");
+	public static final ImageIcon BlackIcon = new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/blackCatStone.png");
+	public static final ImageIcon WhiteIcon = new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/WhiteCatStone.png");
+	public static final ImageIcon NPCIcon = new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/NPCCatStone - red.png");
 	
 	public Stone(int indexX, int indexY) {
 		locationNRole = new int[3];

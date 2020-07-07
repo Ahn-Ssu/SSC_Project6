@@ -72,7 +72,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		
 		nowTurnLabelBody = new JLabel(" ");
 		nowTurnLabelBody.setHorizontalAlignment(SwingConstants.CENTER);
-		nowTurnLabelBody.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/NPCCatStone - red.png"));
+		nowTurnLabelBody.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/NPCCatStone - red.png"));
 		nowTurnLabelBody.setBounds(877, 210, 60, 60);
 		playFrame.getContentPane().add(nowTurnLabelBody);
 		
@@ -92,7 +92,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		}
 		
 		boardLabel = new JLabel("");
-		boardLabel.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/Connect6Borad.png"));
+		boardLabel.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/Connect6Borad.png"));
 		boardLabel.setBounds(18, 18, 760, 760);
 		panel.add(boardLabel);
 		
@@ -104,7 +104,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		soundOnOff = new JButton(" : On");
 		soundOnOff.setHorizontalAlignment(SwingConstants.LEADING);
 		soundOnOff.setFont(new Font("DX\uACBD\uD544\uACE0\uB515B", soundOnOff.getFont().getStyle(), soundOnOff.getFont().getSize()));
-		soundOnOff.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/speaker.png"));
+		soundOnOff.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/speaker.png"));
 		soundOnOff.setBounds(859, 733, 117, 106);
 		soundOnOff.setBorderPainted(false);
 		playFrame.getContentPane().add(soundOnOff);
@@ -143,7 +143,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		
 		
 		if(e.getSource().equals(startButton)) {
-			setTurnLabel(new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/blackCatStone.png"));
+			setTurnLabel(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/blackCatStone.png"));
 			startButton.setText("게임 중...");
 			playTimer = new StopWatch();
 			playTimer.startPlayTimeCount();
@@ -204,7 +204,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		playFrame.setVisible(true);
 		playTimer.stopPlayTimeCount();
 		Tile.stopTimer();
-		nowTurnLabelBody.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project5/Source/NPCCatStone - red.png"));
+		nowTurnLabelBody.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/NPCCatStone - red.png"));
 		startButton.setText("게임 시작!");
 		startButton.setEnabled(true);
 	}
