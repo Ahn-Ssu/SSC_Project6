@@ -1,5 +1,6 @@
 package edu.handong.csee.java;
 
+import java.awt.AWTException;
 import java.awt.Color;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -7,8 +8,10 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -25,6 +28,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	private BoardActivator myActivator = new BoardActivator();
 	private static StopWatch playTimer;
 	private Tile[][] setTile;
+	private Robot firstHelper;
 	
 	private static boolean soundOn = true;
 	
@@ -33,7 +37,13 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	//인터페이스 구축 
 	public PlayFrame() {
 	
-//		MusicPlayer.BGMPlay();
+		MusicPlayer.BGMPlay();
+		try {
+			firstHelper = new Robot();
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		playFrame.getContentPane().setBackground(Color.WHITE);
 		playFrame.getContentPane().setLayout(null);
@@ -149,6 +159,13 @@ public class PlayFrame extends JComponent implements ActionListener  {
 			playTimer.startPlayTimeCount();
 			startButton.setEnabled(false);
 			Justice.getInstance().setDoStart(true);
+			
+//			firstHelper.mouseMove(55 + 10 * 40, 125 + 9 * 40);
+//
+//			firstHelper.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//
+//			firstHelper.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+			
 		}
 		else if(e.getSource().equals(soundOnOff)) {
 			if(soundOn) {

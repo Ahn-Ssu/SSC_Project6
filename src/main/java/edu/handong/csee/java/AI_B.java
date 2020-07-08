@@ -65,6 +65,12 @@ public class AI_B {
 		AIrobot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 
 		AIrobot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 //		robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);//좌클릭 다운
 //		robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);//좌클릭 업
@@ -256,7 +262,7 @@ public class AI_B {
 						y0Location = y;
 					}
 
-					value++;
+					value--;
 
 					if (value != 0 && x == 18) {
 						if (x0Location != -99 && x0Location > 0)
@@ -303,7 +309,7 @@ public class AI_B {
 						y0Location = y;
 					}
 
-					value--;
+					value++;
 
 					if (value != 0 && x == 18) {
 						if (x0Location != -99 && x0Location > 0)
@@ -367,7 +373,7 @@ public class AI_B {
 						x0Location = x;
 					}
 
-					value++;
+					value--;
 
 					if (value != 0 && y == 18) {
 						if (y0Location != -99 && y0Location > 0)
@@ -410,7 +416,7 @@ public class AI_B {
 						x0Location = x;
 					}
 
-					value--;
+					value++;
 
 					if (value != 0 && y == 18) {
 						if (y0Location != -99 && y0Location > 0)
@@ -483,7 +489,7 @@ public class AI_B {
 					}
 					if (xt == 18 || yt == 18 || xt == 0 || yt == 0)
 						value = 0;
-					value++;
+					value--;
 
 				} // 검사 끝
 				else if (value != 0 && fieldInfo[yt][xt] != Stone.WHITE) {
@@ -535,7 +541,7 @@ public class AI_B {
 					if (xt == 18 || yt == 18 || xt == 0 || yt == 0)
 						value = 0;
 
-					value--;
+					value++;
 
 				} // 검사 끝
 				else if (value != 0 && fieldInfo[yt][xt] != Stone.BLACK) {
@@ -602,7 +608,7 @@ public class AI_B {
 					}
 					if (xt == 18 || yt == 18 || xt == 0 || yt == 0)
 						value = 0;
-					value++;
+					value--;
 				} // 검사 끝
 				else if (value != 0 && fieldInfo[yt][xt] != Stone.WHITE) {
 					// y 검출 값을 돌의 끝 위치에 배치
@@ -652,7 +658,7 @@ public class AI_B {
 					}
 					if (xt == 18 || yt == 18 || xt == 0 || yt == 0)
 						value = 0;
-					value--;
+					value++;
 				} // 검사 끝
 				else if (value != 0 && fieldInfo[yt][xt] != Stone.BLACK) {
 					// y 검출 값을 돌의 끝 위치에 배치

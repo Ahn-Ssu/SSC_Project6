@@ -61,10 +61,15 @@ public class AI {
 		}
 
 		AIrobot.mouseMove(55 + theLocationX * 40, 125 + theLocationY * 40);
-
 		AIrobot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-
 		AIrobot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 //		robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);//좌클릭 다운
 //		robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);//좌클릭 업
@@ -76,10 +81,6 @@ public class AI {
 		tempLocation.clear();
 		opLocation.clear();
 		subLocation.clear();
-		xInfo = null;
-		yInfo = null;
-		lsInfo = null;
-		rsInfo = null;
 		xInfo = new int[19][19];
 		yInfo = new int[19][19];
 		lsInfo = new int[19][19];

@@ -11,7 +11,8 @@ public class Justice {
 
 	private int[][] playInfo;
 	private AI myAI = new AI();
-
+	private AI_B myAI_B = new AI_B();
+	
 	public int[][] getPlayInfo() {
 		return playInfo;
 	}
@@ -21,18 +22,17 @@ public class Justice {
 	private static int upDownCount;
 	private static int leftRightCount;
 
-	
 	public Justice() {
 		count = 0;
 		playInfo = new int[19][19];
 	}
-	
+
 	public static Justice getInstance() {
 		if (instance == null)
 			instance = new Justice();
 		return instance;
 	}
-	
+
 	public void clear() {
 		count = 0;
 		playInfo = null;
@@ -48,7 +48,7 @@ public class Justice {
 
 	public void setDoStart(boolean doStart) {
 		this.doStart = doStart;
-		if(doStart) {
+		if (doStart) {
 			Tile.getTimeKeeper().startCountDown();
 		}
 	}
@@ -62,13 +62,16 @@ public class Justice {
 		System.out.println("Activation :" + playInfo[activatedInfo[0]][activatedInfo[1]]);
 
 		checkPlayInfo();
-		if(count%4==1 || count%4==2) {
-			myAI.setInfo(playInfo);
+//		if (count % 4 == 1 || count % 4 == 2) {
+//			myAI.setInfo(playInfo);
+//		}
+		if(doStart)
+		if( count% 4 ==0 || count % 4 == 3) {
+			myAI_B.setInfo(playInfo);
 		}
 		System.out.println(count);
-		
-		
-			checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
+
+		checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
 	}
 
 	private void checkWin(int x, int y, int role) {
@@ -78,22 +81,22 @@ public class Justice {
 		try {
 			upCheck(x, y, role);
 			downCheck(x, y, role);
-			
+
 			leftCheck(x, y, role);
 			rightCheck(x, y, role);
-			
+
 			leftSlopeTopCheck(x, y, role);
 			leftSlopeBottomCheck(x, y, role);
-			
+
 			rightSlopeTopCheck(x, y, role);
 			rightSlopeBottomCheck(x, y, role);
 		} catch (Exception e) {
 			System.out.println("승리" + role);
 			new ClearPopup(role);
+			PlayFrame.clearActivate();
 			Tile.stopTimer();
 			PlayFrame.stopPlayTimer();
 		}
-
 		System.out.println("UD : " + upDownCount + ", LR : " + leftRightCount + ", RS : " + rightSlopeCount + ", LS : "
 				+ leftSlopeCount);
 	}
@@ -103,17 +106,16 @@ public class Justice {
 		for (int i = 0; i < 19; i++) {
 			for (int j = 0; j < 19; j++) {
 				System.out.print(" ");
-				System.out.print(String.format("%2d",playInfo[i][j]));
+				System.out.print(String.format("%2d", playInfo[i][j]));
 			}
 			System.out.println(" ");
 		}
 	}
 
-	
 	private void upCheck(int x, int y, int role) throws Exception {
-		if(x == 0 )
+		if (x == 0)
 			return;
-		
+
 		if (playInfo[x - 1][y] == role) {
 			System.out.println("위에 있대용 : " + x + " , " + y);
 			upDownCount++;
@@ -129,9 +131,9 @@ public class Justice {
 	}
 
 	private void downCheck(int x, int y, int role) throws Exception {
-		if( x == 18 )
-				return;
-		
+		if (x == 18)
+			return;
+
 		if (playInfo[x + 1][y] == role) {
 			System.out.println("아래 있대용 : " + x + " , " + y);
 			upDownCount++;
@@ -150,7 +152,7 @@ public class Justice {
 	private void leftCheck(int x, int y, int role) throws Exception {
 		if (y == 0)
 			return;
-		
+
 		if (playInfo[x][y - 1] == role) {
 			System.out.println("왼쪽에 있대용 : " + x + " , " + y);
 			leftRightCount++;
@@ -166,9 +168,9 @@ public class Justice {
 	}
 
 	private void rightCheck(int x, int y, int role) throws Exception {
-		if( y == 18)
-				return;
-		
+		if (y == 18)
+			return;
+
 		if (playInfo[x][y + 1] == role) {
 			System.out.println("오른쪽에 있대용 : " + x + " , " + y);
 			leftRightCount++;
@@ -185,7 +187,7 @@ public class Justice {
 	private void leftSlopeTopCheck(int x, int y, int role) throws Exception {
 		if (x == 0 || y == 0)
 			return;
-		
+
 		if (playInfo[x - 1][y - 1] == role) {
 			System.out.println("왼쪽 위에 있대용 : " + x + " , " + y);
 			leftSlopeCount++;
@@ -201,9 +203,9 @@ public class Justice {
 	}
 
 	private void leftSlopeBottomCheck(int x, int y, int role) throws Exception {
-		if( x == 18 || y == 18)
-				return;
-		
+		if (x == 18 || y == 18)
+			return;
+
 		if (playInfo[x + 1][y + 1] == role) {
 			System.out.println("오른 아래 있대용 : " + x + " , " + y);
 			leftSlopeCount++;
@@ -219,8 +221,8 @@ public class Justice {
 	}
 
 	private void rightSlopeTopCheck(int x, int y, int role) throws Exception {
-		if(x == 0 || y == 18)
-				return;
+		if (x == 0 || y == 18)
+			return;
 		if (playInfo[x - 1][y + 1] == role) {
 			System.out.println("오른 위에 있대용 : " + x + " , " + y);
 			rightSlopeCount++;
@@ -236,9 +238,9 @@ public class Justice {
 	}
 
 	private void rightSlopeBottomCheck(int x, int y, int role) throws Exception {
-		if(x == 18 || y == 0)
+		if (x == 18 || y == 0)
 			return;
-		
+
 		if (playInfo[x + 1][y - 1] == role) {
 			System.out.println("왼쪽 아래 있대용 : " + x + " , " + y);
 			rightSlopeCount++;
