@@ -31,6 +31,8 @@ public class Tile extends JLabel implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		System.out.println(e.getPoint());
+		
 		int now = Justice.getInstance().getCount();
 		MusicPlayer.putSound();
 		if(!Justice.getInstance().isDoStart()) {

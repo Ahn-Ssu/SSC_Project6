@@ -1,20 +1,32 @@
 package edu.handong.csee.java;
 
-import java.awt.Point;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.awt.event.InputEvent;
 
 //백색 중심 AI 입니다. 흑색 카운터임 
 public class AI {
 
-	
+	private Robot AIrobot;
+
 	private int[][] fieldInfo;
 	private int[][] SumInfo;
-	
+
 	private int[][] xInfo, yInfo, lsInfo, rsInfo;
 
+	private ArrayList<int[]> tempLocation = new ArrayList<int[]>();
+	private ArrayList<int[]> opLocation = new ArrayList<int[]>();
+	private ArrayList<int[]> subLocation = new ArrayList<int[]>();
+
 	public AI() {
-		fieldInfo = new int[19][19];
+		try {
+			fieldInfo = new int[19][19];
+			AIrobot = new Robot();
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void setInfo(int[][] nowPlayInfo) {
@@ -27,66 +39,207 @@ public class AI {
 		yDectect();
 		rsDectect();
 		lsDectect();
-		sumUpInfo();
+//		sumUpInfo();
+		findPoint();
+		AIClick();
+		clearAll();
 	}
 
-	public static int[][] deepCopy(int[][] original) {
-		if (original == null) {
-			return null;
+	private void AIClick() {
+// 	(20 + i*40, 10 + j*40)
+		int theLocationX = 0;
+		int theLocationY = 0;
+		if (subLocation.size() == 1) {
+			theLocationX = subLocation.get(0)[1];
+			theLocationY = subLocation.get(0)[0];
+			System.out.println("inClick == Sub.size() : " + subLocation.size());
+		} else if (subLocation.size() > 1) {
+			int randomIndex = (int) (Math.random() * subLocation.size() - 1);
+			theLocationX = subLocation.get(randomIndex)[1];
+			theLocationY = subLocation.get(randomIndex)[0];
+			System.out.println("inClick == Sub.size() : " + subLocation.size());
 		}
 
-		final int[][] result = new int[original.length][];
-		for (int i = 0; i < original.length; i++) {
-			result[i] = Arrays.copyOf(original[i], original[i].length);
-			// For Java versions prior to Java 6 use the next:
-			// System.arraycopy(original[i], 0, result[i], 0, original[i].length);
+		AIrobot.mouseMove(55 + theLocationX * 40, 125 + theLocationY * 40);
+
+		AIrobot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+
+		AIrobot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+//		robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);//좌클릭 다운
+//		robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);//좌클릭 업
+//		robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);//좌클릭 다운
+//		robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);//좌클릭 업
+	}
+
+	private void clearAll() {
+		tempLocation.clear();
+		opLocation.clear();
+		subLocation.clear();
+		xInfo = null;
+		yInfo = null;
+		lsInfo = null;
+		rsInfo = null;
+		xInfo = new int[19][19];
+		yInfo = new int[19][19];
+		lsInfo = new int[19][19];
+		rsInfo = new int[19][19];
+	}
+
+	private void findPoint() {
+		int x, y;
+		int myMax = 0;
+		int opMax = 0;
+		int sumBetween = 100;
+
+		tempLocation = new ArrayList<>();
+		opLocation = new ArrayList<>();
+		subLocation = new ArrayList<>();
+
+		for (y = 0; y < 19; y++) {
+			for (x = 0; x < 19; x++) {
+				if (fieldInfo[y][x] == 11 || 22 == fieldInfo[y][x] || 99 == fieldInfo[y][x]) {
+					continue;
+				}
+
+				// 최대값을 찾았을 때 갱신 필터
+				if (xInfo[y][x] > myMax) {
+					System.out.println("my x clear");
+					tempLocation.clear();
+					myMax = xInfo[y][x];
+				}
+				if (yInfo[y][x] > myMax) {
+					System.out.println("my y clear");
+					tempLocation.clear();
+					myMax = yInfo[y][x];
+				}
+				if (lsInfo[y][x] > myMax) {
+					System.out.println("my ls clear");
+					tempLocation.clear();
+					myMax = lsInfo[y][x];
+				}
+				if (rsInfo[y][x] > myMax) {
+					System.out.println("my rs clear");
+					tempLocation.clear();
+					myMax = rsInfo[y][x];
+				}
+				// 최대값과 동일 했을때, 저장
+				if (xInfo[y][x] == myMax) {
+					tempLocation.add(new int[] { y, x });
+				}
+				if (yInfo[y][x] == myMax) {
+					tempLocation.add(new int[] { y, x });
+				}
+				if (lsInfo[y][x] == myMax) {
+					tempLocation.add(new int[] { y, x });
+				}
+				if (rsInfo[y][x] == myMax) {
+					tempLocation.add(new int[] { y, x });
+				}
+			}
 		}
-		return result;
+
+		for (y = 0; y < 19; y++) {
+			for (x = 0; x < 19; x++) {
+				if (fieldInfo[y][x] == 11 || 22 == fieldInfo[y][x] || 99 == fieldInfo[y][x]) {
+					continue;
+				}
+
+				// 최대값을 찾았을 때 갱신 필터
+				if (xInfo[y][x] < opMax) {
+					System.out.println("op x clear");
+					opLocation.clear();
+					opMax = xInfo[y][x];
+				}
+				if (yInfo[y][x] < opMax) {
+					System.out.println("op y clear");
+					opLocation.clear();
+					opMax = yInfo[y][x];
+				}
+				if (lsInfo[y][x] < opMax) {
+					System.out.println("op ls clear");
+					opLocation.clear();
+					opMax = lsInfo[y][x];
+				}
+				if (rsInfo[y][x] < opMax) {
+					System.out.println("op rs clear");
+					opLocation.clear();
+					opMax = rsInfo[y][x];
+				}
+				if (xInfo[y][x] == opMax) {
+					opLocation.add(new int[] { y, x });
+				}
+				if (yInfo[y][x] == opMax) {
+					opLocation.add(new int[] { y, x });
+				}
+				if (lsInfo[y][x] == opMax) {
+					opLocation.add(new int[] { y, x });
+				}
+				if (rsInfo[y][x] == opMax) {
+					opLocation.add(new int[] { y, x });
+				}
+			}
+		}
+		if (myMax >= 4) {
+			subLocation = (ArrayList<int[]>) tempLocation.clone();
+			return;
+		}
+		if (opMax <= -4) {
+			subLocation = (ArrayList<int[]>) opLocation.clone();
+			return;
+		}
+		for (int[] my : tempLocation) {
+			for (int[] op : opLocation) {
+				if (my[0] == op[0] && my[1] == op[1]) {
+					subLocation.add(new int[] { my[0], my[1] });
+				}
+
+			}
+		}
+		if (subLocation.size() == 0) {
+			subLocation = (ArrayList<int[]>) tempLocation.clone();
+		}
+
+		System.out.println("search == myMax  : " + myMax);
+		System.out.println("search == opMax : " + opMax);
+		System.out.println("search == temp.size() : " + tempLocation.size());
+		System.out.println("search == op.size() : " + opLocation.size());
+		System.out.println("search == Sub.size() : " + subLocation.size());
+		System.out.println("search == Sub.info : ");
+
+		for (int[] t : subLocation) {
+			System.out.println(t[0] + " : " + t[1]);
+		}
 	}
 
 	private void sumUpInfo() {
 		SumInfo = deepCopy(fieldInfo);
 		System.out.println("-------------------------Sum-----------------");
-		for(int y = 0 ; y < 19 ; y ++) {
-			for(int x = 0 ; x < 19 ; x++) {
-				
-				if(xInfo[y][x] == fieldInfo[y][x] &&
-						yInfo[y][x] == fieldInfo[y][x] &&
-						lsInfo[y][x] == fieldInfo[y][x] &&
-						rsInfo[y][x] == fieldInfo[y][x] ) 
+		for (int y = 0; y < 19; y++) {
+			for (int x = 0; x < 19; x++) {
+
+				if (xInfo[y][x] == fieldInfo[y][x] && yInfo[y][x] == fieldInfo[y][x] && lsInfo[y][x] == fieldInfo[y][x]
+						&& rsInfo[y][x] == fieldInfo[y][x])
 					continue;
-					
-				
-					if(xInfo[y][x] != 0 && xInfo[y][x] != -1 && xInfo[y][x] != 1)
-						SumInfo[y][x] += xInfo[y][x];
-					if(yInfo[y][x] != 0 && yInfo[y][x] != -1 && yInfo[y][x] != 1)
-						SumInfo[y][x] += yInfo[y][x];
-					if (lsInfo[y][x] != 0 && lsInfo[y][x] != -1 && lsInfo[y][x] != 1)
-						SumInfo[y][x] += lsInfo[y][x];
-					if(rsInfo[y][x] != 0 && rsInfo[y][x] != -1 && rsInfo[y][x] != 1)
-						SumInfo[y][x] += rsInfo[y][x];
-				
+
+				if (xInfo[y][x] != 0 && xInfo[y][x] != -1 && xInfo[y][x] != 1)
+					SumInfo[y][x] += xInfo[y][x];
+				if (yInfo[y][x] != 0 && yInfo[y][x] != -1 && yInfo[y][x] != 1)
+					SumInfo[y][x] += yInfo[y][x];
+				if (lsInfo[y][x] != 0 && lsInfo[y][x] != -1 && lsInfo[y][x] != 1)
+					SumInfo[y][x] += lsInfo[y][x];
+				if (rsInfo[y][x] != 0 && rsInfo[y][x] != -1 && rsInfo[y][x] != 1)
+					SumInfo[y][x] += rsInfo[y][x];
+
 			}
 		}
-		
-		for(int y = 0 ; y < 19 ; y ++) {
-			for(int x = 0 ; x < 19 ; x++) {
+
+		for (int y = 0; y < 19; y++) {
+			for (int x = 0; x < 19; x++) {
 				System.out.print(String.format("%3d", SumInfo[y][x]));
 			}
 			System.out.println(" ");
 		}
-	}
-	
-	public void checkInfo() {
-		System.out.println("----------AI Detection---------");
-		for (int i = 0; i < 19; i++) {
-			for (int j = 0; j < 19; j++) {
-				System.out.print(" ");
-				System.out.print(String.format("%2d", fieldInfo[i][j]));
-			}
-			System.out.println(" ");
-		}
-
 	}
 
 	private void xDectect() {
@@ -219,9 +372,9 @@ public class AI {
 					}
 
 					value++;
-					
-					if(value != 0 && y == 18 ) {
-						if (y0Location != -99 && y0Location > 0 )
+
+					if (value != 0 && y == 18) {
+						if (y0Location != -99 && y0Location > 0)
 							if (fieldInfo[y0Location][x0Location] == Stone.NONE)
 								yInfo[y0Location][x0Location] += value;
 					}
@@ -235,7 +388,7 @@ public class AI {
 
 					// y 검출 값을 기억해놓은 위치에 배치
 					// 대신 해당 좌표가 0으로 (오브젝트가없는) 비어있어야 함
-					if (y0Location != -99 && y0Location > 0 )
+					if (y0Location != -99 && y0Location > 0)
 						if (fieldInfo[y0Location][x0Location] == Stone.NONE)
 							yInfo[y0Location][x0Location] += value;
 
@@ -262,9 +415,9 @@ public class AI {
 					}
 
 					value--;
-					
-					if(value != 0 && y == 18 ) {
-						if (y0Location != -99 && y0Location > 0 )
+
+					if (value != 0 && y == 18) {
+						if (y0Location != -99 && y0Location > 0)
 							if (fieldInfo[y0Location][x0Location] == Stone.NONE)
 								yInfo[y0Location][x0Location] += value;
 					}
@@ -278,7 +431,7 @@ public class AI {
 
 					// y 검출 값을 기억해놓은 위치에 배치
 					// 대신 해당 좌표가 0으로 (오브젝트가없는) 비어있어야 함
-					if (y0Location != -99 && y0Location > 0 )
+					if (y0Location != -99 && y0Location > 0)
 						if (fieldInfo[y0Location][x0Location] == Stone.NONE)
 							yInfo[y0Location][x0Location] += value;
 
@@ -500,7 +653,6 @@ public class AI {
 					if (y0Location == -99 && xt > 0 && yt > 0 && value == 0) {
 						y0Location = yt - 1;
 						x0Location = xt - 1;
-						System.out.println("xt : " + xt + " : yt : " + yt);
 					}
 					if (xt == 18 || yt == 18 || xt == 0 || yt == 0)
 						value = 0;
@@ -541,5 +693,19 @@ public class AI {
 			}
 			System.out.println(" ");
 		}
+	}
+
+	public static int[][] deepCopy(int[][] original) {
+		if (original == null) {
+			return null;
+		}
+
+		final int[][] result = new int[original.length][];
+		for (int i = 0; i < original.length; i++) {
+			result[i] = Arrays.copyOf(original[i], original[i].length);
+			// For Java versions prior to Java 6 use the next:
+			// System.arraycopy(original[i], 0, result[i], 0, original[i].length);
+		}
+		return result;
 	}
 }
