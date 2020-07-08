@@ -1,5 +1,7 @@
 package edu.handong.csee.java;
 
+import java.awt.Cursor;
+
 public class Justice {
 
 	private static Justice instance;
@@ -20,11 +22,10 @@ public class Justice {
 		count = 0;
 		playInfo = new int[19][19];
 	}
-
+	
 	public static Justice getInstance() {
 		if (instance == null)
 			instance = new Justice();
-
 		return instance;
 	}
 	
@@ -59,7 +60,7 @@ public class Justice {
 		checkPlayInfo();
 		myAI.setInfo(playInfo);
 //		if (count > 10)
-			checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
+//			checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
 	}
 
 	private void checkWin(int x, int y, int role) {
