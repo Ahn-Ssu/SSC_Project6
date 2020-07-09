@@ -61,14 +61,14 @@ public class Justice {
 		playInfo[activatedInfo[0]][activatedInfo[1]] = activatedInfo[2];
 		System.out.println("Activation :" + playInfo[activatedInfo[0]][activatedInfo[1]]);
 
-//		checkPlayInfo();
+		checkPlayInfo();
 		if (count % 4 == 1 || count % 4 == 2) {
 			myAI.setInfo(playInfo);
 		}
-//		if(doStart)
-//		if( count% 4 ==0 || count % 4 == 3) {
-//			myAI_B.setInfo(playInfo);
-//		}
+		if(doStart)
+		if( count% 4 ==0 || count % 4 == 3) {
+			myAI_B.setInfo(playInfo);
+		}
 //		System.out.println(count);
 
 //		checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
