@@ -71,6 +71,21 @@ public class AI_B {
 		twoRangeData.put("22, 0, 0, 22, 22, 22", 1);
 		twoRangeData.put("11, 0, 11, 11, 0, 11", 1);
 		twoRangeData.put("22, 0, 22, 22, 0, 22", 1);
+		twoRangeData.put("11, 11, 0, 11, 0, 11", 2);
+		twoRangeData.put("22, 22, 0, 22, 0, 22", 2);
+		twoRangeData.put("11, 0, 11, 0, 11, 11", 1);
+		twoRangeData.put("22, 0, 22, 0, 22, 22", 1);
+		
+		
+		
+		twoRangeData.put("0, 11, 11, 11, 11, 11", 0);
+		twoRangeData.put("11, 0, 11, 11, 11, 11", 1);
+		twoRangeData.put("11, 11, 0, 11, 11, 11", 2);
+		twoRangeData.put("11, 11, 11, 0, 11, 11", 3);
+		twoRangeData.put("11, 11, 11, 11, 0, 11", 4);
+		twoRangeData.put("11, 11, 11, 11, 11, 0", 5);
+		
+		
 		
 		
 	}
@@ -956,7 +971,7 @@ public class AI_B {
 							}
 						}
 						// 오른쪽으로 연속인가?
-						else if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
+						if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
 								&& fieldInfo[checkYPoint + 2][checkXPoint + 2] == StoneRole
 								&& fieldInfo[checkYPoint + 3][checkXPoint + 3] == StoneRole
 								&& fieldInfo[checkYPoint + 4][checkXPoint + 4] == StoneRole) {
@@ -1060,6 +1075,7 @@ public class AI_B {
 				// 2-3) 4연속 체크, 4와 14부터는 양방향으로 연속일 수 있음
 				else {
 					// 왼쪽으로 연속인가?
+					if(checkYPoint>4 && checkXPoint>4)
 					if (fieldInfo[checkYPoint - 1][checkXPoint - 1] == StoneRole
 							&& fieldInfo[checkYPoint - 2][checkXPoint - 2] == StoneRole
 							&& fieldInfo[checkYPoint - 3][checkXPoint - 3] == StoneRole
@@ -1073,7 +1089,8 @@ public class AI_B {
 						}
 					}
 					// 오른쪽으로 연속인가?
-					else if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
+					if(checkYPoint<14 && checkXPoint<14)
+					if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint + 2][checkXPoint + 2] == StoneRole
 							&& fieldInfo[checkYPoint + 3][checkXPoint + 3] == StoneRole
 							&& fieldInfo[checkYPoint + 4][checkXPoint + 4] == StoneRole
@@ -1085,7 +1102,8 @@ public class AI_B {
 							subLocation.add(attackCheck);
 						}
 					}
-					else if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
+					if(checkYPoint>0 && checkXPoint>0 && checkYPoint<15 && checkXPoint<15)
+					if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint + 2][checkXPoint + 2] == StoneRole
 							&& fieldInfo[checkYPoint + 3][checkXPoint + 3] == StoneRole
 							&& fieldInfo[checkYPoint + 4][checkXPoint + 4] == StoneRole
@@ -1097,7 +1115,8 @@ public class AI_B {
 							subLocation.add(attackCheck);
 						}
 					}
-					else if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
+					if(checkYPoint>1 && checkXPoint>1 && checkYPoint<16 && checkXPoint<16)
+					if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint + 2][checkXPoint + 2] == StoneRole
 							&& fieldInfo[checkYPoint + 3][checkXPoint + 3] == StoneRole
 							&& fieldInfo[checkYPoint - 2][checkXPoint - 2] == StoneRole
@@ -1109,7 +1128,8 @@ public class AI_B {
 							subLocation.add(attackCheck);
 						}
 					}
-					else if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
+					if(checkYPoint>2 && checkXPoint>2 && checkYPoint<17 && checkXPoint<17)
+					if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint + 2][checkXPoint + 2] == StoneRole
 							&& fieldInfo[checkYPoint - 3][checkXPoint - 3] == StoneRole
 							&& fieldInfo[checkYPoint - 2][checkXPoint - 2] == StoneRole
@@ -1121,7 +1141,8 @@ public class AI_B {
 							subLocation.add(attackCheck);
 						}
 					}
-					else if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
+					if(checkYPoint>3 && checkXPoint>3 && checkYPoint<18 && checkXPoint<18)
+					if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint - 4][checkXPoint - 4] == StoneRole
 							&& fieldInfo[checkYPoint - 3][checkXPoint - 3] == StoneRole
 							&& fieldInfo[checkYPoint - 2][checkXPoint - 2] == StoneRole
@@ -1303,7 +1324,8 @@ public class AI_B {
 				}
 				// 2-3) 4연속 체크, 4와 14부터는 양방향으로 연속일 수 있음
 				else {
-					// 왼쪽으로 연속인가?
+					// 왼쪽으로 연속인가
+					if(checkXPoint< 14 && checkYPoint > 4)
 					if (fieldInfo[checkYPoint + 1][checkXPoint - 1] == StoneRole
 							&& fieldInfo[checkYPoint + 2][checkXPoint - 2] == StoneRole
 							&& fieldInfo[checkYPoint + 3][checkXPoint - 3] == StoneRole
@@ -1317,7 +1339,8 @@ public class AI_B {
 						}
 					}
 					// 오른쪽으로 연속인가?
-					else if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
+					if(checkXPoint> 4 && checkYPoint < 14)
+					if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == StoneRole
 							&& fieldInfo[checkYPoint - 3][checkXPoint + 3] == StoneRole
 							&& fieldInfo[checkYPoint - 4][checkXPoint + 4] == StoneRole
@@ -1329,7 +1352,8 @@ public class AI_B {
 							subLocation.add(attackCheck);
 						}
 					}
-					else if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
+					if(checkXPoint< 18 && checkYPoint > 0 && checkXPoint > 3 && checkYPoint < 15) 
+						if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == StoneRole
 							&& fieldInfo[checkYPoint - 3][checkXPoint + 3] == StoneRole
 							&& fieldInfo[checkYPoint - 4][checkXPoint + 4] == StoneRole
@@ -1341,7 +1365,8 @@ public class AI_B {
 							subLocation.add(attackCheck);
 						}
 					}
-					else if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
+					if(checkXPoint< 17 && checkYPoint > 1 && checkXPoint > 2 && checkYPoint < 16) 
+					if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == StoneRole
 							&& fieldInfo[checkYPoint - 3][checkXPoint + 3] == StoneRole
 							&& fieldInfo[checkYPoint + 2][checkXPoint - 2] == StoneRole
@@ -1353,7 +1378,8 @@ public class AI_B {
 							subLocation.add(attackCheck);
 						}
 					}
-					else if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
+					if(checkXPoint< 16 && checkYPoint > 2 && checkXPoint > 1 && checkYPoint < 17)
+					if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == StoneRole
 							&& fieldInfo[checkYPoint + 3][checkXPoint - 3] == StoneRole
 							&& fieldInfo[checkYPoint + 2][checkXPoint - 2] == StoneRole
@@ -1365,7 +1391,8 @@ public class AI_B {
 							subLocation.add(attackCheck);
 						}
 					}
-					else if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
+					if(checkXPoint< 17 && checkYPoint > 1 && checkXPoint > 0 && checkYPoint < 18)
+					if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
 							&& fieldInfo[checkYPoint + 4][checkXPoint - 4] == StoneRole
 							&& fieldInfo[checkYPoint + 3][checkXPoint - 3] == StoneRole
 							&& fieldInfo[checkYPoint + 2][checkXPoint - 2] == StoneRole
