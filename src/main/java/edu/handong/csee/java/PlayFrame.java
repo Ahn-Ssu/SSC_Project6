@@ -37,7 +37,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	//인터페이스 구축 
 	public PlayFrame() {
 	
-		MusicPlayer.BGMPlay();
+//		MusicPlayer.BGMPlay();
 		try {
 			firstHelper = new Robot();
 		} catch (AWTException e) {
