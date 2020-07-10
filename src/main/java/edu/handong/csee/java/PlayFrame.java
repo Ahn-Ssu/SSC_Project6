@@ -28,7 +28,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	private BoardActivator myActivator = new BoardActivator();
 	private static StopWatch playTimer;
 	private Tile[][] setTile;
-	private Robot firstHelper;
+	private AI_B firstHelper = new AI_B();
 	
 	private static boolean soundOn = true;
 	
@@ -38,12 +38,6 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	public PlayFrame() {
 	
 //		MusicPlayer.BGMPlay();
-		try {
-			firstHelper = new Robot();
-		} catch (AWTException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		playFrame.getContentPane().setBackground(Color.WHITE);
 		playFrame.getContentPane().setLayout(null);
@@ -160,12 +154,9 @@ public class PlayFrame extends JComponent implements ActionListener  {
 			startButton.setEnabled(false);
 			Justice.getInstance().setDoStart(true);
 			
-//			firstHelper.mouseMove(55 + 10 * 40, 125 + 9 * 40);
-//
-//			firstHelper.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-//
-//			firstHelper.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
 			
+			firstHelper.setInfo(Justice.getInstance().getPlayInfo());
 		}
 		else if(e.getSource().equals(soundOnOff)) {
 			if(soundOn) {

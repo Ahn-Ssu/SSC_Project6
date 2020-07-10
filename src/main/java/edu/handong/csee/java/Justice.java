@@ -10,12 +10,13 @@ public class Justice {
 	private boolean doStart;
 
 	private int[][] playInfo;
-	private AI myAI = new AI();
-	private AI_B myAI_B = new AI_B();
-	
 	public int[][] getPlayInfo() {
 		return playInfo;
 	}
+
+	private AI myAI = new AI();
+	private AI_B myAI_B = new AI_B();
+	
 
 	private static int leftSlopeCount;
 	private static int rightSlopeCount;
@@ -45,6 +46,10 @@ public class Justice {
 		else
 			return count;
 	}
+	
+	public int nowCount() {
+			return count;
+	}
 
 	public void setDoStart(boolean doStart) {
 		this.doStart = doStart;
@@ -69,7 +74,7 @@ public class Justice {
 		if( count% 4 ==0 || count % 4 == 3) {
 			myAI_B.setInfo(playInfo);
 		}
-//		System.out.println(count);
+		System.out.println(count);
 
 //		checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
 	}
