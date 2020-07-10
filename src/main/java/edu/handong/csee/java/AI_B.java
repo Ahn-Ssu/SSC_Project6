@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.awt.event.InputEvent;
 
-//백색 중심 AI 입니다. 흑색 카운터임 
+//흑 중심 AI 입니다. 흑색 카운터임 
 public class AI_B {
 
 	private Robot AIrobot;

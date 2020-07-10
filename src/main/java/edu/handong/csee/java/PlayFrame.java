@@ -155,7 +155,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 			Justice.getInstance().setDoStart(true);
 			
 
-			
+			// 흑돌인 경우에 중앙 착수 할 수 있게 해줌 
 			firstHelper.setInfo(Justice.getInstance().getPlayInfo());
 		}
 		else if(e.getSource().equals(soundOnOff)) {
