@@ -6,7 +6,7 @@ public class Justice {
 
 	private static Justice instance;
 
-	private int count;
+	private static int count;
 	private boolean doStart;
 
 	private int[][] playInfo;
@@ -47,7 +47,7 @@ public class Justice {
 			return count;
 	}
 
-	public int nowCount() {
+	public static int nowCount() {
 		return count;
 	}
 
