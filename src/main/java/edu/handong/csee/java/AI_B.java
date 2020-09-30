@@ -39,7 +39,7 @@ public class AI_B {
 	
 	public void setting() {
 		
-		
+		foolData.put("22, 0, 11, 11, 11, 11, 22", 1);
 		foolData.put("22, 11, 0, 11, 11, 11, 22", 2);
 		foolData.put("22, 11, 11, 0, 11, 11, 22", 3);
 		foolData.put("22, 11, 11, 11, 0, 11, 22", 4);

@@ -10,13 +10,13 @@ public class Justice {
 	private boolean doStart;
 
 	private int[][] playInfo;
+
 	public int[][] getPlayInfo() {
 		return playInfo;
 	}
 
 	private AI myAI = new AI();
 	private AI_B myAI_B = new AI_B();
-	
 
 	private static int leftSlopeCount;
 	private static int rightSlopeCount;
@@ -46,9 +46,9 @@ public class Justice {
 		else
 			return count;
 	}
-	
+
 	public int nowCount() {
-			return count;
+		return count;
 	}
 
 	public void setDoStart(boolean doStart) {
@@ -67,16 +67,19 @@ public class Justice {
 		System.out.println("Activation :" + playInfo[activatedInfo[0]][activatedInfo[1]]);
 
 		checkPlayInfo();
-		if (count % 4 == 1 || count % 4 == 2) {
+		// 첫수 +검은돌이 AI 일때 
+		
+		
+		if ((PlayFrame.getInstance().getUserRole() == Stone.BLACK) && (count % 4 == 1 || count % 4 == 2)) {
 			myAI.setInfo(playInfo);
 		}
-		if(doStart)
-		if( count% 4 ==0 || count % 4 == 3) {
-			myAI_B.setInfo(playInfo);
-		}
+		if (doStart)
+			if ((PlayFrame.getInstance().getUserRole() == Stone.WHITE) && (count % 4 == 0 || count % 4 == 3)) {
+				myAI_B.setInfo(playInfo);
+			}
 		System.out.println(count);
 
-//		checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
+		checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
 	}
 
 	private void checkWin(int x, int y, int role) {
@@ -259,5 +262,8 @@ public class Justice {
 			throw new Exception();
 		}
 	}
+	
+	
+	
 
 }

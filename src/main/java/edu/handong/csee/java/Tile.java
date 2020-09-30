@@ -11,7 +11,7 @@ public class Tile extends JLabel implements MouseListener, MouseMotionListener{
 	private Cursor cursor;
 	private Stone hereStone;
 	
-	private static StopWatch TimeKeeper = new StopWatch();
+	public static StopWatch TimeKeeper = new StopWatch();
 	
 	public Tile(int i, int j){
 		this.setVisible(true);

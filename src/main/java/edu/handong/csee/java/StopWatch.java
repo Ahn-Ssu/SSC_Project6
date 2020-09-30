@@ -6,8 +6,7 @@ import java.util.TimerTask;
 
 public class StopWatch {
 
-	//타이머의 상황의 유동성을 주어야함 코드에서 15초가 아닌 게임 내에서 유연성을 줄 수 있게 유틸 확장 
-	private int secCount = 1000;
+	private int secCount = 15;
 	private int startTime;
 
 	private Timer secTimer = new Timer();

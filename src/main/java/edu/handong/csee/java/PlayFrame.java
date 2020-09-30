@@ -21,7 +21,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	private static PlayFrame instance;
 	
 	private static JFrame playFrame = new JFrame("Connect6 + AI");
-	private JButton startButton, soundOnOff, restartButton;
+	private JButton startButton, soundOnOff, restartButton, oneMoreTime;
 	private JLabel boardLabel, nowTurnLabelBody, countDownLabelBody ,playTimeLabelBody  ;
 	private static JPanel panel;
 	
@@ -29,9 +29,11 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	private static StopWatch playTimer;
 	private Tile[][] setTile;
 	private AI_B firstHelper = new AI_B();
+	private Selector selector;
 	
 	private static boolean soundOn = true;
 	
+	private int userRole ;
 	
 
 	//인터페이스 구축 
@@ -113,6 +115,14 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		soundOnOff.setBorderPainted(false);
 		playFrame.getContentPane().add(soundOnOff);
 		
+		oneMoreTime = new JButton(" : Time");
+		oneMoreTime.setHorizontalAlignment(SwingConstants.LEADING);
+		oneMoreTime.setFont(new Font("DX\uACBD\uD544\uACE0\uB515B", oneMoreTime.getFont().getStyle(), oneMoreTime.getFont().getSize()));
+		oneMoreTime.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/source.png"));
+		oneMoreTime.setBounds(859, 680, 300, 106);
+		oneMoreTime.setBorderPainted(false);
+		playFrame.getContentPane().add(oneMoreTime);
+		
 		 restartButton = new JButton("다시 하기");
 		restartButton.setFont(new Font("DX\uACBD\uD544\uACE0\uB515B", restartButton.getFont().getStyle(), restartButton.getFont().getSize()));
 		restartButton.setBounds(18, 12, 117, 29);
@@ -123,6 +133,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		startButton.addActionListener(this);
 		soundOnOff.addActionListener(this);
 		restartButton.addActionListener(this);
+		oneMoreTime.addActionListener(this);
 		
 	}
 
@@ -147,16 +158,18 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		
 		
 		if(e.getSource().equals(startButton)) {
-			setTurnLabel(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/blackCatStone.png"));
-			startButton.setText("게임 중...");
-			playTimer = new StopWatch();
-			playTimer.startPlayTimeCount();
-			startButton.setEnabled(false);
-			Justice.getInstance().setDoStart(true);
+			selector = new Selector();
+//			userRole = selector.getUserRole();
+//			setTurnLabel(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/blackCatStone.png"));
+//			startButton.setText("게임 중...");
+//			playTimer = new StopWatch();
+//			playTimer.startPlayTimeCount();
+//			startButton.setEnabled(false);
+//			Justice.getInstance().setDoStart(true);
 			
 
 			// 흑돌인 경우에 중앙 착수 할 수 있게 해줌 
-			firstHelper.setInfo(Justice.getInstance().getPlayInfo());
+//			firstHelper.setInfo(Justice.getInstance().getPlayInfo());
 		}
 		else if(e.getSource().equals(soundOnOff)) {
 			if(soundOn) {
@@ -172,6 +185,16 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		}
 		else if(e.getSource().equals(restartButton)) {
 			restart();
+		}
+		
+		else if(e.getSource().equals(oneMoreTime)) {
+			oneMoreTime.setText(" : Extend");
+	
+				Tile.TimeKeeper.stopCountDown();
+				Tile.TimeKeeper = new StopWatch();
+				Tile.TimeKeeper.startCountDown();
+				
+	
 		}
 	}
 
@@ -195,7 +218,6 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	
 	private void restart() {
 		System.out.println("re");
-		 
 		panel.removeAll();
 		Justice.getInstance().setDoStart(false);
 		myActivator = new BoardActivator();
@@ -215,5 +237,26 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		nowTurnLabelBody.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/NPCCatStone - red.png"));
 		startButton.setText("게임 시작!");
 		startButton.setEnabled(true);
+	}
+	
+	public void gameStart() {
+		setTurnLabel(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/blackCatStone.png"));
+		startButton.setText("게임 중...");
+		playTimer = new StopWatch();
+		playTimer.startPlayTimeCount();
+		startButton.setEnabled(false);
+		Justice.getInstance().setDoStart(true);
+		
+
+		// 흑돌인 경우에 중앙 착수 할 수 있게 해줌 
+		firstHelper.setInfo(Justice.getInstance().getPlayInfo());
+	}
+	
+	public void setUserRole(int userRole) {
+		this.userRole = userRole;
+	}
+	
+	public int getUserRole() {
+		return this.userRole;
 	}
 }
