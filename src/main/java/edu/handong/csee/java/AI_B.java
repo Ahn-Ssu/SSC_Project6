@@ -346,15 +346,15 @@ public class AI_B {
 			int randomX, randomY;
 			
 			if(randomNumber == 0)
-				 randomX = 4;
+				 randomX = 5;
 			else
-				randomX = 14;
+				randomX = 13;
 			
 			randomNumber = (int)(Math.random()*2);
 			if(randomNumber == 0)
-				 randomY = 4;
+				 randomY = 5;
 			else
-				randomY = 14;
+				randomY = 13;
 			
 			for (int i = -1; i < 2; i++) {
 				for (int j = -1; j < 2; j++) {
