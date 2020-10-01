@@ -1897,7 +1897,7 @@ public class AI_B {
 					}
 					// 2-3) 4연속 체크, 4와 14부터는 양방향으로 연속일 수 있음
 					else {
-						System.out.println("RS 탐지 했어요, 4-14, 4-14 영역입니다");
+
 						// 왼쪽으로 연속인가?
 						if (checkXPoint > 3 && checkYPoint < 15)
 							if (fieldInfo[checkYPoint + 1][checkXPoint - 1] == StoneRole
@@ -1906,88 +1906,97 @@ public class AI_B {
 									&& fieldInfo[checkYPoint + 4][checkXPoint - 4] == StoneRole) {
 								// 3) 공간 여유 2 체크
 								// 0 11 11 11 11 'v'
-								if (checkXPoint > 4 && fieldInfo[checkYPoint + 5][checkXPoint - 5] == Stone.NONE) {
+								if (checkXPoint > 4 && checkYPoint < 14
+										&& fieldInfo[checkYPoint + 5][checkXPoint - 5] == Stone.NONE) {
 									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 0 11 11 11 11 'v'");
 									subLocation.add(attackCheck);
 								}
 								// 11 11 11 11 'v' 0
-								else if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == Stone.NONE) {
+								else if (checkXPoint < 18 && checkYPoint > 0
+										&& fieldInfo[checkYPoint - 1][checkXPoint + 1] == Stone.NONE) {
 									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 0 11 11 11 11 'v'");
 									subLocation.add(attackCheck);
 								}
 							}
 						// 오른쪽으로 연속인가?
-						if (checkYPoint > 3 && checkXPoint < 15)
-							if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
-									&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == StoneRole
-									&& fieldInfo[checkYPoint - 3][checkXPoint + 3] == StoneRole
-									&& fieldInfo[checkYPoint - 4][checkXPoint + 4] == StoneRole) {
-								// 3) 공간 여유 2칸 체크
-								// 0 'v' 11 11 11 11
-								if (checkYPoint > 4 && checkXPoint < 14
-										&& fieldInfo[checkYPoint - 5][checkXPoint + 5] == Stone.NONE) {
-									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 'v' 11 11 11 11 0");
-									subLocation.add(attackCheck);
-									// 'v' 11 11 11 11 0
-								} else if (fieldInfo[checkYPoint + 1][checkXPoint - 1] == Stone.NONE) {
-									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 0 'v' 11 11 11 11");
-									subLocation.add(attackCheck);
-								}
+						if (checkXPoint < 15 && checkYPoint > 3
+								&& fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
+								&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == StoneRole
+								&& fieldInfo[checkYPoint - 3][checkXPoint + 3] == StoneRole
+								&& fieldInfo[checkYPoint - 4][checkXPoint + 4] == StoneRole) {
+							// 3) 공간 여유 2칸 체크
+							// 0 'v' 11 11 11 11
+							if (checkXPoint < 14 && checkYPoint > 4
+									&& fieldInfo[checkYPoint - 5][checkXPoint + 5] == Stone.NONE) {
+								System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 'v' 11 11 11 11 0");
+								subLocation.add(attackCheck);
+								// 'v' 11 11 11 11 0
+							} else if (checkXPoint > 0 && checkYPoint < 18
+									&& fieldInfo[checkYPoint + 1][checkXPoint - 1] == Stone.NONE) {
+								System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 0 'v' 11 11 11 11");
+								subLocation.add(attackCheck);
 							}
+						}
 						// 11 'v' 11 11 11
-						if (checkXPoint > 0 && checkYPoint < 18 && checkXPoint < 15 && checkYPoint > 3)
+						if ((checkXPoint > 0 && checkYPoint < 18) && (checkXPoint < 16 && checkYPoint > 2))
 							if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
 									&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == StoneRole
 									&& fieldInfo[checkYPoint - 3][checkXPoint + 3] == StoneRole
 									&& fieldInfo[checkYPoint + 1][checkXPoint - 1] == StoneRole) {
 								// 3) 공간 여유 2칸 체크
 								// 0 11 'v' 11 11 11
-								if (fieldInfo[checkYPoint + 2][checkXPoint - 2] == Stone.NONE) {
+								if ((checkXPoint > 1 && checkYPoint < 17)
+										&& fieldInfo[checkYPoint + 2][checkXPoint - 2] == Stone.NONE) {
 									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 : 0 11 'v' 11 11 11");
 									subLocation.add(attackCheck);
 								}
 								// 11 'v' 11 11 11 0
-								else if (fieldInfo[checkYPoint - 4][checkXPoint + 4] == Stone.NONE) {
+								else if ((checkXPoint < 15 && checkYPoint > 3)
+										&& fieldInfo[checkYPoint - 4][checkXPoint + 4] == Stone.NONE) {
 									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 : 11 'v' 11 11 11 0");
 									subLocation.add(attackCheck);
 								}
 							}
 						// 11 11 'v' 11 11
-						if (checkXPoint > 2 && checkYPoint < 16 && checkXPoint < 17 && checkYPoint > 1)
-							if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
-									&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == StoneRole
-									&& fieldInfo[checkYPoint + 2][checkXPoint - 2] == StoneRole
-									&& fieldInfo[checkYPoint + 1][checkXPoint - 1] == StoneRole) {
-								// 3) 공간 여유 2칸 체크
-								// 0 11 11 'v' 11 11
-								if (fieldInfo[checkYPoint + 3][checkXPoint - 3] == Stone.NONE) {
-									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 : 0 11 11 'v' 11 11");
-									subLocation.add(attackCheck);
-								}
-								// 11 11 'v' 11 11 0
-								else if (fieldInfo[checkYPoint - 3][checkXPoint + 3] == Stone.NONE) {
-									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 : 11 11 'v' 11 11 0");
-									subLocation.add(attackCheck);
-								}
+						if ((checkXPoint > 1 && checkYPoint < 17) && (checkXPoint < 17 && checkYPoint > 1)
+								&& fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
+								&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == StoneRole
+								&& fieldInfo[checkYPoint + 2][checkXPoint - 2] == StoneRole
+								&& fieldInfo[checkYPoint + 1][checkXPoint - 1] == StoneRole) {
+							// 3) 공간 여유 2칸 체크
+							// 0 11 11 'v' 11 11
+							if ((checkXPoint > 2 && checkYPoint < 16)
+									&& fieldInfo[checkYPoint + 3][checkXPoint - 3] == Stone.NONE) {
+								System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 : 0 11 11 'v' 11 11");
+								subLocation.add(attackCheck);
 							}
+							// 11 11 'v' 11 11 0
+							else if ((checkXPoint < 16 && checkYPoint > 2)
+									&& fieldInfo[checkYPoint - 3][checkXPoint + 3] == Stone.NONE) {
+								System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 : 11 11 'v' 11 11 0");
+								subLocation.add(attackCheck);
+							}
+						}
 						// 11 11 11 'v' 11
-						if (checkXPoint > 3 && checkYPoint < 15 && checkXPoint < 18 && checkYPoint > 0)
-							if (fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
-									&& fieldInfo[checkYPoint + 3][checkXPoint - 3] == StoneRole
-									&& fieldInfo[checkYPoint + 2][checkXPoint - 2] == StoneRole
-									&& fieldInfo[checkYPoint + 1][checkXPoint - 1] == StoneRole) {
-								// 3) 공간 여유 2칸 체크
-								// 0 11 11 11 'v' 11
-								if (fieldInfo[checkYPoint + 4][checkXPoint - 4] == Stone.NONE) {
-									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 :  0  11 11 11 'v' 11");
-									subLocation.add(attackCheck);
-								}
-								// 11 11 11 'v' 11 0
-								else if (fieldInfo[checkYPoint - 2][checkXPoint + 2] == Stone.NONE) {
-									System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 : 11 11 11 'v' 11 0");
-									subLocation.add(attackCheck);
-								}
+						if ((checkXPoint > 2 && checkYPoint < 16) && (checkXPoint < 18 && checkYPoint > 0)
+								&& fieldInfo[checkYPoint - 1][checkXPoint + 1] == StoneRole
+								&& fieldInfo[checkYPoint + 3][checkXPoint - 3] == StoneRole
+								&& fieldInfo[checkYPoint + 2][checkXPoint - 2] == StoneRole
+								&& fieldInfo[checkYPoint + 1][checkXPoint - 1] == StoneRole) {
+							// 3) 공간 여유 2칸 체크
+							// 0 11 11 11 'v' 11
+							if ((checkXPoint > 3 && checkYPoint < 15)
+									&& fieldInfo[checkYPoint + 4][checkXPoint - 4] == Stone.NONE) {
+								System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 :  0  11 11 11 'v' 11");
+								subLocation.add(attackCheck);
 							}
+							// 11 11 11 'v' 11 0
+							else if ((checkXPoint < 17 && checkYPoint > 1)
+									&& fieldInfo[checkYPoint - 2][checkXPoint + 2] == Stone.NONE) {
+								System.out.println(StoneRole + " === rs 축 왼쪽아래방향 2칸 여유탐지 : 11 11 11 'v' 11 0");
+								subLocation.add(attackCheck);
+							}
+						}
 
 					}
 				}
