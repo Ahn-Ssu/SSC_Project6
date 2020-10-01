@@ -1336,10 +1336,11 @@ public class AI_B {
 			} // Y
 			else if (checkDirection == Stone.DirectionLS) {
 				// 1) 체크하는 좌표의 위치가 맨 끝자리가 아니어야함 (
-				System.out.println("LS 탐지 했음");
+				
+				// 예외 케이스! 4짜리를 대각선 6칸에 알맞게 끼우면 이 조건에 벗어남으로 (0,13)+(5,18),(13,0)+(18,5)처리를 해줘야함 
 				if (checkXPoint > 0 && checkXPoint < 18 && checkYPoint > 0 && checkYPoint < 18) {
-					// 2-1) 4연속 체크, checkPoint의 위치가 1,2,3 이면 위쪽으로 연속이 아님
-					if (checkXPoint < 15 && checkYPoint < 4) {
+					// 2-1) 4연속 체크, checkPoint의 왼쪽 구석 상단의 영역이면 좌표기준 왼쪽 위방향으로는 연속이 안나타남 
+					if ((checkXPoint < 4 && checkYPoint < 15) || (checkXPoint < 15 && checkYPoint < 4)) {
 						// 'v' 11 11 11 11
 						if (fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
 								&& fieldInfo[checkYPoint + 2][checkXPoint + 2] == StoneRole
@@ -1347,13 +1348,15 @@ public class AI_B {
 								&& fieldInfo[checkYPoint + 4][checkXPoint + 4] == StoneRole) {
 							// 3) 공간 여유 2 체크
 							// 0 'v' 11 11 11 11
-							if (fieldInfo[checkYPoint - 1][checkXPoint - 1] == Stone.NONE) {
-								System.out.println(StoneRole + " === ls 축 왼쪽 위 방향 2칸 여유탐지 : 0 'v' 11 11 11 11");
+							if (checkXPoint > 0&& checkYPoint > 0 &&
+							fieldInfo[checkYPoint - 1][checkXPoint - 1] == Stone.NONE) {
+								System.out.println(StoneRole + " === ls 축 왼쪽 위 방향 여유탐지 : 0 'v' 11 11 11 11");
 								subLocation.add(attackCheck);
 							}
 							// 'v' 11 11 11 11 0
-							else if (fieldInfo[checkYPoint + 5][checkXPoint + 5] == Stone.NONE) {
-								System.out.println(StoneRole + " === ls 축 아래오른방향 2칸 여유탐지 : 'v' 11 11 11 11 0");
+							else if (checkYPoint < 14 &&
+								fieldInfo[checkYPoint + 5][checkXPoint + 5] == Stone.NONE) {
+								System.out.println(StoneRole + " === ls 축 아래 오른방향 여유탐지 : 'v' 11 11 11 11 0");
 								subLocation.add(attackCheck);
 							}
 						}// 'v' 11 11 11 11
@@ -1399,7 +1402,7 @@ public class AI_B {
 						}// 11 11 'v' 11 11
 						
 						// 11 11 11 'v' 11 
-						if (checkXPoint > 3 && checkYPoint > 3 &&
+						if (checkXPoint > 2 && checkYPoint > 2 &&
 								fieldInfo[checkYPoint + 1][checkXPoint + 1] == StoneRole
 								&& fieldInfo[checkYPoint - 3][checkXPoint - 3] == StoneRole
 								&& fieldInfo[checkYPoint - 2][checkXPoint - 2] == StoneRole
