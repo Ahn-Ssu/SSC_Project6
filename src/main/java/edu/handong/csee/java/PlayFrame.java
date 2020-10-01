@@ -174,11 +174,11 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		else if(e.getSource().equals(soundOnOff)) {
 			if(soundOn) {
 				soundOnOff.setText(" : Off");
-				MusicPlayer.stopBGM();
+			//	MusicPlayer.stopBGM();
 			}
 			else {
 				soundOnOff.setText(" : On");
-				MusicPlayer.startBGM();
+			//	MusicPlayer.startBGM();
 			}
 			soundOn = !soundOn;
 				
@@ -249,6 +249,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		
 
 		// 흑돌인 경우에 중앙 착수 할 수 있게 해줌 
+		if(userRole==Stone.WHITE)
 		firstHelper.setInfo(Justice.getInstance().getPlayInfo());
 	}
 	

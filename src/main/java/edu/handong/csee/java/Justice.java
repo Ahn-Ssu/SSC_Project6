@@ -70,22 +70,29 @@ public class Justice {
 		// 첫수 +검은돌이 AI 일때 
 		
 		
-		if ((PlayFrame.getInstance().getUserRole() == Stone.BLACK) && (count % 4 == 1 || count % 4 == 2)) {
+		if (
+				(PlayFrame.getInstance().getUserRole() == Stone.BLACK) &&
+				(count % 4 == 1 || count % 4 == 2)) {
 			myAI.setInfo(playInfo);
 		}
 		if (doStart)
-			if ((PlayFrame.getInstance().getUserRole() == Stone.WHITE) && (count % 4 == 0 || count % 4 == 3)) {
+			if (
+					(PlayFrame.getInstance().getUserRole() == Stone.WHITE) &&
+					(count % 4 == 0 || count % 4 == 3)) {
 				myAI_B.setInfo(playInfo);
 			}
 		System.out.println(count);
 
+		
+		
 		checkWin(activatedInfo[0], activatedInfo[1], activatedInfo[2]);
 	}
 
 	private void checkWin(int x, int y, int role) {
 		// 어느방향으로던 6스택 쌓으면 승리~
 		leftSlopeCount = rightSlopeCount = upDownCount = leftRightCount = 1;
-		System.out.println("현재 좌표! " + x + " : " + y);
+		
+		System.out.println("현재 좌표! " + x + " : " + y + " role :" + role);
 		try {
 			upCheck(x, y, role);
 			downCheck(x, y, role);
@@ -133,7 +140,7 @@ public class Justice {
 			return;
 		}
 
-		if (leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
+		if (role != Stone.NPC && leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
 			throw new Exception();
 		}
 	}
@@ -152,7 +159,7 @@ public class Justice {
 		}
 
 		// 정규식 밑에 위치한 이유는 6 이상으로 길게 하는 경우 승리 판정을 안하기 위함
-		if (leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
+		if (role != Stone.NPC &&  leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
 			throw new Exception();
 		}
 	}
@@ -170,7 +177,7 @@ public class Justice {
 			return;
 		}
 
-		if (leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
+		if (role != Stone.NPC &&  leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
 			throw new Exception();
 		}
 	}
@@ -187,7 +194,7 @@ public class Justice {
 			System.out.println("오른쪽 끝났대용" + x + " , " + y);
 			return;
 		}
-		if (leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
+		if (role != Stone.NPC &&  leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
 			throw new Exception();
 		}
 	}
@@ -205,7 +212,7 @@ public class Justice {
 			return;
 		}
 
-		if (leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
+		if (role != Stone.NPC &&  leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
 			throw new Exception();
 		}
 	}
@@ -223,7 +230,7 @@ public class Justice {
 			return;
 		}
 
-		if (leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
+		if (role != Stone.NPC &&  leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
 			throw new Exception();
 		}
 	}
@@ -240,7 +247,7 @@ public class Justice {
 			return;
 		}
 
-		if (leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
+		if (role != Stone.NPC &&  leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
 			throw new Exception();
 		}
 	}
@@ -258,7 +265,7 @@ public class Justice {
 			return;
 		}
 
-		if (leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
+		if (role != Stone.NPC &&  leftSlopeCount == 6 || rightSlopeCount == 6 || upDownCount == 6 || leftRightCount == 6) {
 			throw new Exception();
 		}
 	}
