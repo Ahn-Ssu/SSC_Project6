@@ -71,13 +71,13 @@ public class Justice {
 		
 		
 		if (
-				(PlayFrame.getInstance().getUserRole() == Stone.BLACK) &&
+//				(PlayFrame.getInstance().getUserRole() == Stone.BLACK) &&
 				(count % 4 == 1 || count % 4 == 2)) {
 			myAI.setInfo(playInfo);
 		}
 		if (doStart)
 			if (
-					(PlayFrame.getInstance().getUserRole() == Stone.WHITE) &&
+//					(PlayFrame.getInstance().getUserRole() == Stone.WHITE) &&
 					(count % 4 == 0 || count % 4 == 3)) {
 				myAI_B.setInfo(playInfo);
 			}
