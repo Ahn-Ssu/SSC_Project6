@@ -107,10 +107,13 @@ public class Justice {
 			rightSlopeBottomCheck(x, y, role);
 		} catch (Exception e) {
 			System.out.println("승리" + role);
+			
+			if(role!=99) {
 			new ClearPopup(role);
 			PlayFrame.clearActivate();
 			Tile.stopTimer();
 			PlayFrame.stopPlayTimer();
+			}
 		}
 		System.out.println("UD : " + upDownCount + ", LR : " + leftRightCount + ", RS : " + rightSlopeCount + ", LS : "
 				+ leftSlopeCount);

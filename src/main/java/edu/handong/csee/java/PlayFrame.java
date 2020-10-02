@@ -33,7 +33,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 	
 	private static boolean soundOn = true;
 	
-	private int userRole ;
+	private int userRole=-99 ;
 	
 
 	//인터페이스 구축 
@@ -111,15 +111,15 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		soundOnOff.setHorizontalAlignment(SwingConstants.LEADING);
 		soundOnOff.setFont(new Font("DX\uACBD\uD544\uACE0\uB515B", soundOnOff.getFont().getStyle(), soundOnOff.getFont().getSize()));
 		soundOnOff.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/speaker.png"));
-		soundOnOff.setBounds(859, 733, 117, 106);
+		soundOnOff.setBounds(859, 714, 117, 106);
 		soundOnOff.setBorderPainted(false);
 		playFrame.getContentPane().add(soundOnOff);
 		
-		oneMoreTime = new JButton(" : Time");
+		oneMoreTime = new JButton("");
 		oneMoreTime.setHorizontalAlignment(SwingConstants.LEADING);
 		oneMoreTime.setFont(new Font("DX\uACBD\uD544\uACE0\uB515B", oneMoreTime.getFont().getStyle(), oneMoreTime.getFont().getSize()));
 		oneMoreTime.setIcon(new ImageIcon("/Users/suhyun/git/SSC_Project6/Source/source.png"));
-		oneMoreTime.setBounds(859, 680, 300, 106);
+		oneMoreTime.setBounds(871, 311, 66, 70);
 		oneMoreTime.setBorderPainted(false);
 		playFrame.getContentPane().add(oneMoreTime);
 		
@@ -127,6 +127,12 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		restartButton.setFont(new Font("DX\uACBD\uD544\uACE0\uB515B", restartButton.getFont().getStyle(), restartButton.getFont().getSize()));
 		restartButton.setBounds(18, 12, 117, 29);
 		playFrame.getContentPane().add(restartButton);
+		
+		JLabel onemoreLabel = new JLabel("시간 연장 ");
+		onemoreLabel.setFont(new Font("DX경필고딕B", Font.BOLD, 15));
+		onemoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		onemoreLabel.setBounds(859, 282, 91, 29);
+		playFrame.getContentPane().add(onemoreLabel);
 		
 		playFrame.setVisible(true);
 		
@@ -187,13 +193,10 @@ public class PlayFrame extends JComponent implements ActionListener  {
 			restart();
 		}
 		
-		else if(e.getSource().equals(oneMoreTime)) {
-			oneMoreTime.setText(" : Extend");
-	
+		else if(e.getSource().equals(oneMoreTime)&&userRole != -99) {
 				Tile.TimeKeeper.stopCountDown();
 				Tile.TimeKeeper = new StopWatch();
 				Tile.TimeKeeper.startCountDown();
-				
 	
 		}
 	}
