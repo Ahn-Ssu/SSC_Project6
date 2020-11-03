@@ -51,7 +51,7 @@ public class ClearPopup extends JComponent implements ActionListener {
 		}
 		else if(role == 99) {
 			catIcon.setText(" ㅠㅅㅠ " );
-			InfoMessageLabel.setText("15초가 지났어요");
+			InfoMessageLabel.setText("30초가 지났어요");
 			reactionLabel.setText("시간 초과");
 		}
 		catIcon.setBounds(42, 46, 51, 50);

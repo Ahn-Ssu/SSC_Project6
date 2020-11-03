@@ -124,7 +124,7 @@ public class PlayFrame extends JComponent implements ActionListener  {
 		playFrame.getContentPane().add(oneMoreTime);
 		
 		 restartButton = new JButton("다시 하기");
-		restartButton.setFont(new Font("DX\uACBD\uD544\uACE0\uB515B", restartButton.getFont().getStyle(), restartButton.getFont().getSize()));
+		restartButton.setFont(new Font("DX\uACBD\uD544\uACE0\uB515B", restartButton.getFont().getStyle(), 13));
 		restartButton.setBounds(18, 12, 117, 29);
 		playFrame.getContentPane().add(restartButton);
 		

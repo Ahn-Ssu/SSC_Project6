@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 public class StopWatch {
 
-	private int secCount = 15;
+	private int secCount = 30;
 	private int startTime;
 
 	private Timer secTimer = new Timer();
