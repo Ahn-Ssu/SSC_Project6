@@ -65,19 +65,18 @@ public class Justice {
 	public void setGameInfo(int[] activatedInfo) {
 		playInfo[activatedInfo[0]][activatedInfo[1]] = activatedInfo[2];
 		System.out.println("Activation :" + playInfo[activatedInfo[0]][activatedInfo[1]]);
-
 		checkPlayInfo();
 		// 첫수 +검은돌이 AI 일때 
 		
 		
 		if (
-//				(PlayFrame.getInstance().getUserRole() == Stone.BLACK) &&
+				(PlayFrame.getInstance().getUserRole() == Stone.BLACK) &&
 				(count % 4 == 1 || count % 4 == 2)) {
 			myAI.setInfo(playInfo);
 		}
 		if (doStart)
 			if (
-//					(PlayFrame.getInstance().getUserRole() == Stone.WHITE) &&
+					(PlayFrame.getInstance().getUserRole() == Stone.WHITE) &&
 					(count % 4 == 0 || count % 4 == 3)) {
 				myAI_B.setInfo(playInfo);
 			}
@@ -110,9 +109,10 @@ public class Justice {
 			
 			if(role!=99) {
 			new ClearPopup(role);
-			PlayFrame.clearActivate();
+			
 			Tile.stopTimer();
 			PlayFrame.stopPlayTimer();
+			PlayFrame.clearActivate();
 			}
 		}
 		System.out.println("UD : " + upDownCount + ", LR : " + leftRightCount + ", RS : " + rightSlopeCount + ", LS : "

@@ -490,7 +490,7 @@ public class AI_B {
 			subLocation = (ArrayList<int[]>) tempLocation.clone();
 			return;
 		}
-		if (myMax >= 4 && (Justice.getInstance().nowCount() % 4 == 0)) {
+		if (myMax >= 4 && (Justice.getInstance().nowCount() % 4 == 2)) {
 			// spaceCheck(tempLocation, Stone.BLACK);
 			if (subLocation.size() > 0)
 				return;
