@@ -1,6 +1,7 @@
-# SCC_Project 6.
+# Connect6_withAI
 ###### 21600402 Ahn SuHyun
 
+6th task
 
 ## Task : Connect6 (육목) + AI
 
